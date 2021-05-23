@@ -1,22 +1,23 @@
 {
     "name": "blecs",
-    "version": "1.0.0",
-    "description": "A lightweight browser game engine built with THREE.js.",
+    "version": "1.0.1",
+    "description": "bloaf ECS",
     "main": "dist/index.js",
     "scripts": {
         "build": "tsc",
-        "test": "jest tests"
+        "test": "jest tests",
+        "prepublish": "npm run build"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/addyvan/blengine.git"
+        "url": "git+https://github.com/bloaf-org/blecs.git"
     },
     "author": "Addison van den Hoeven",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/addyvan/blengine/issues"
+        "url": "https://github.com/bloaf-org/blecs/issues"
     },
-    "homepage": "https://github.com/addyvan/blengine#readme",
+    "homepage": "https://github.com/bloaf-org/blecs#readme",
     "dependencies": {
         "three": "^0.128.0"
     },
