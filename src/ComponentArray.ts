@@ -1,5 +1,5 @@
 
-class ComponentArray<T> {
+class ComponentArray {
 
     size : number;
 
@@ -17,7 +17,7 @@ class ComponentArray<T> {
         this.indexToEntityMap = {};
     }
 
-    AddComponent(entityID : number, component : T) {
+    AddComponent(entityID : number, component : any) {
 
         if (entityID in this.entityToIndexMap) {
             throw new Error("Component Array: Entity added twice.");
@@ -63,7 +63,7 @@ class ComponentArray<T> {
 
     }
 
-    GetData(entityID : number) : T {
+    GetData(entityID : number) : any {
         if (!(entityID in this.entityToIndexMap)) {
             throw Error("ComponentArray: GetData failed, entityID not found.");
         }

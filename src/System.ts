@@ -1,14 +1,17 @@
-import { MAX_ENTITIES } from './EntityManager';
 
 class System {
 
-    entities : Uint32Array;
+    entities : Set<number>;
+    handler : CallableFunction;
 
-    constructor() {
-        this.entities = new Uint32Array(MAX_ENTITIES);
+    constructor(handler : CallableFunction) {
+        this.entities = new Set();
+        this.handler = handler;
     }
 
-    
+    update() {
+        this.handler({entities: this.entities});
+    }
 
 }
 

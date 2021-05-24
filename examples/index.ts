@@ -1,39 +1,33 @@
-import {componentMgr, entityMgr} from "../src/index";
-import * as THREE from "three";
+import ecs, {Signature} from "../src/index";
 
-class GameObject {
+import RoomsSystem from "./exampleSystem";
+import Room from "./exampleComponent";
 
-    id : number;
+let entities = [];
 
-    constructor() {
-        this.id = entityMgr.createEntity();
-    }
-    
-    addComponent(componentType : string) {
-        componentMgr.AddComponent(this.id, componentType);
-    }
+for (let i = 0; i < 10; i++) {
+    entities.push(ecs.CreateEntity());
+}
+
+ecs.RegisterComponent("room");
 
 
+ecs.RegisterSystem("roomSystem", RoomsSystem);
+
+// subscribe to entities with the room component
+let sig = new Signature();
+sig.set(ecs.GetComponentType("room"), 1);
+ecs.SetSystemSignature("roomSystem", sig);
+
+
+
+
+for (let i = 0; i < entities.length; i++) {
+    ecs.AddComponent(entities[i], "room", Room);
 }
 
 
-
-let g = new GameObject();
-g.addComponent("object3d");
-
-console.log(componentMgr.componentArrays[0]);
-
-// Implementing systems might kinda look like this?
-// this system would be overly broad but interact on 
-// the object3d component. Usually I think object3d
-// would always be part of the signature somehow
-
-
-function MySystem() {
-    let components = componentMgr.componentArrays[0];
-    for (let i = 0; i < components.size; i++) {
-        console.log(components.components[i]);
-    }
+for ( let step = 0; step < 100; step++ ) {
+    RoomsSystem.update();
 }
 
-MySystem();
