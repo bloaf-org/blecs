@@ -1,6 +1,6 @@
 {
     "name": "blecs",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "bloaf ECS",
     "main": "dist/index.js",
     "scripts": {

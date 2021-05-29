@@ -41,7 +41,7 @@ class SystemManager {
                 throw Error(`System Manager: System ${key} has no signature`);
             }
 
-            if ( doSignaturesMatch(this.signatures[key], entitySignature) ) {
+            if ( doSignaturesMatch(entitySignature, this.signatures[key]) ) {
                 this.systems[key].entities.add(entityID);
             } else {
                 this.systems[key].entities.delete(entityID);

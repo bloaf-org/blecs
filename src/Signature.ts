@@ -55,9 +55,9 @@ class Signature {
 // to properly to bitwise operations with 
 // javascript datatypes (easy with bitset in cpp)
 
-export function doSignaturesMatch(siga : Signature, sigb : Signature) : boolean {
+export function doSignaturesMatch(entitySig : Signature, systemSig : Signature) : boolean {
     
-    if (siga.length != sigb.length) {
+    if (entitySig.length != systemSig.length) {
         throw new Error(`
             ERROR: Signature lengths do not match...
                    time to implement a global resizing
@@ -65,10 +65,16 @@ export function doSignaturesMatch(siga : Signature, sigb : Signature) : boolean 
         `);
     }
     
-    for (let i = 0; i < siga.length; i++) {
-        if ( siga.buffer[i] != sigb.buffer[i] ) {
-            return false
+    for (let i = 0; i < entitySig.length; i++) {
+
+        // make sure the entity contains the system sig
+        // but the entity can have more items in its sig
+        if (systemSig.buffer[i] === 1) {
+            if ( systemSig.buffer[i] != entitySig.buffer[i] ) {
+                return false;
+            }
         }
+        
     }
 
     return true;
