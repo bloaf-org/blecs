@@ -9,8 +9,8 @@ class System {
         this.handler = handler;
     }
 
-    update() {
-        this.handler({entities: this.entities});
+    update(dt : number) {
+        this.handler({entities: this.entities, dt: dt});
     }
 
 }
